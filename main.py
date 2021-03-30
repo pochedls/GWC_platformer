@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.surf = pygame.Surface((30, 30))
         self.surf.fill((75, 75, 240))
         self.rect = self.surf.get_rect()
-        self.pos = vec((10, 10))
+        self.pos = vec((10, 360))
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         
@@ -62,6 +62,8 @@ class platform(pygame.sprite.Sprite):
 
 # Add our main platform (our floor)
 PT1 = platform()
+
+# Add our player block
 P1 = Player()
 
 # Keep track of all the sprites and platforms in groups
