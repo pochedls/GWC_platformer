@@ -79,7 +79,7 @@ platforms = pygame.sprite.Group()
 platforms.add(PT1)
 
 # add random levels
-for x in range(5):
+for x in range(6):
     pl = platform()
     platforms.add(pl)
     all_sprites.add(pl)
