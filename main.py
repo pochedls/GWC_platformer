@@ -1,5 +1,6 @@
 # Imports
 import pygame
+import random
 from pygame.locals import *
 pygame.init()
 
@@ -61,12 +62,19 @@ class Player(pygame.sprite.Sprite):
 class platform(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.surf = pygame.Surface((WIDTH, 20))
+        pwidth = random.randint(50, 100)
+        pheight = 12
+        self.surf = pygame.Surface((pwidth, pheight))
         self.surf.fill((240, 75, 75))
-        self.rect = self.surf.get_rect(center = (WIDTH/2, HEIGHT - 10))
+        pcenter_x = random.randint(0, WIDTH-10)
+        pcenter_y = random.randint(0, HEIGHT-30)
+        self.rect = self.surf.get_rect(center = (pcenter_x, pcenter_y))
 
 # Add our main platform (our floor)
 PT1 = platform()
+PT1.surf = pygame.Surface((WIDTH, 20))
+PT1.surf.fill((255, 0, 0))
+PT1.rect = PT1.surf.get_rect(center = (WIDTH/2, HEIGHT-10))
 
 # Add our player block
 P1 = Player()
