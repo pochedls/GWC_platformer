@@ -17,6 +17,15 @@ FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Fun Game")
 
+# platform generation function
+def plat_gen():
+    while len(platforms) < 7:
+        width = random.randrange(50, 100)
+        p = platform()
+        p.rect.center = (random.randrange(0, WIDTH - width), random.randrange(-50, 0))
+        platforms.add(p)
+        all_sprites.add(p)
+
 # Set up our sprite player class
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -101,7 +110,15 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 P1.jump()
- 
+    
+    if P1.rect.top <= HEIGHT/3:
+        P1.pos.y += abs(P1.vel.y)
+        for plat in platforms:
+            plat.rect.y += abs(P1.vel.y)
+            if plat.rect.top >= HEIGHT:
+                plat.kill()
+
+    plat_gen()
     displaysurface.fill((220, 220, 220))
     P1.move()
     P1.update()
